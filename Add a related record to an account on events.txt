@@ -1,0 +1,38 @@
+// Triggers are executed or fire when any event happen
+
+//  Use trigger to ad a related record( opportunity)  to an account when the account( with no opportunity) is updated
+
+trigger AddRelatedRecord on Account (after insert, after update) {
+
+    List<Opportunity> oppList = new List<Opportunity>();       //create an opputunity list
+    
+    // Get the related opportunities for the accounts in this trigger
+    
+    Map<Id,Account> acctsWithOpps = new Map<Id,Account>(
+
+        [SELECT Id,(SELECT Id FROM Opportunities) FROM Account WHERE Id IN :Trigger.New]);
+    
+    // Add an opportunity for each account if it doesn't already have one.
+    // Iterate through each account( with new version).
+    
+    for(Account a : Trigger.New) {              // Trigger.New returns a new version of the sObjects 
+
+        System.debug('acctsWithOpps.get(a.Id).Opportunities.size()=' + acctsWithOpps.get(a.Id).Opportunities.size());
+        
+        // Check if the account already has a related opportunity.   
+
+        if (acctsWithOpps.get(a.Id).Opportunities.size() == 0) {       //   Opportunity.size() is the number of Opportunity in the account
+            
+            // If it doesn't, add a default opportunity
+
+            oppList.add(new Opportunity(Name=a.Name + ' Opportunity',                // with Name = new account name Opportunity,
+                                       StageName='Prospecting',                      // StageName = " Prospecting",
+                                       CloseDate=System.today().addMonths(1),         // CloseDate: today's date add 1 month to it so its 
+                                       AccountId=a.Id));                            // 6/18/22
+        }           
+    }
+    if (oppList.size() > 0) {
+        insert oppList;
+    }
+
+// After you created this trigger, whenever you add or update a new account ( with no Opportunity) you will add an Opportunity to this account
