@@ -20,10 +20,10 @@ trigger TriggerName on ObjectName (trigger_events) {
 
 ```
 ### The events you can specify are:
-*#### before insert
-*#### before update
-*#### before delete
-*#### after insert
-*#### after update
-*#### after delete
-*#### after undelete
+* ####  before insert
+* ####  before update
+* ####  before delete
+* ####  after insert
+* ####  after update
+* ####  after delete
+* #### after undelete
