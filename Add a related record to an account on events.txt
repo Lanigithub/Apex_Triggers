@@ -1,4 +1,4 @@
-// Triggers are executed or fire when any event happen
+// Triggers are executed or fire when any events happen
 
 //  Use trigger to ad a related record( opportunity)  to an account when the account( with no opportunity) is updated
 
