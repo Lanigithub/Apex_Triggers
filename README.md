@@ -28,3 +28,13 @@ Example:
 * ####  after update
 * ####  after delete
 * #### after undelete
+
+***
+
+** Bulk Apex Triggers
+#### Learning Objectives
+After completing this unit, you'll be able to:
+* #### Write triggers that operate on collections of sObjects.
+* #### Write triggers that perform efficient SOQL and DML operations.
+* #### Bulk Trigger Design Patterns
+***
