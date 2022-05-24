@@ -31,7 +31,7 @@ Example:
 
 ***
 
-** Bulk Apex Triggers
+## Bulk Apex Triggers
 #### Learning Objectives
 After completing this unit, you'll be able to:
 * #### Write triggers that operate on collections of sObjects.
